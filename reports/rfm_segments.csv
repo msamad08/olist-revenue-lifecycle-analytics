@@ -1,0 +1,7 @@
+segment,customers,revenue,avg_recency_days,customer_pct,revenue_pct
+New high-value,22688,5946316.0,105.0,24.0,38.0
+At-risk high-value one-timers,21727,5785523.0,357.0,23.0,37.0
+Dormant low-value one-timers,23777,1522265.0,357.0,25.0,10.0
+New low-value,22811,1441758.0,107.0,24.0,9.0
+"Loyal (repeat, recent)",1558,490205.0,106.0,2.0,3.0
+Lapsed repeat buyers,1292,390485.0,345.0,1.0,2.0

@@ -1,0 +1,5 @@
+model,WAPE_pct,period_err_p10,period_err_p90
+ma4,16.357,-0.14,0.199
+reg_trend,17.408,-0.137,0.209
+holt_damped,19.221,-0.096,0.402
+naive,19.323,-0.098,0.422

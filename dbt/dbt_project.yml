@@ -1,0 +1,31 @@
+name: olist_analytics
+version: "1.0.0"
+config-version: 2
+profile: olist_analytics
+
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Order statuses that never become recognized revenue
+  non_revenue_statuses: ["canceled", "unavailable"]
+  # A seller is "churned" after this many days with no orders
+  seller_churn_days: 60
+  # Tolerance (BRL) when reconciling payments to order value
+  payment_tolerance_brl: 1.00
+  # Last complete Mon-Sun week before the extract truncates (see dq_volume_anomalies)
+  analysis_end_date: "2018-08-19"
+
+models:
+  olist_analytics:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+    data_quality:
+      +materialized: table
+      +schema: data_quality

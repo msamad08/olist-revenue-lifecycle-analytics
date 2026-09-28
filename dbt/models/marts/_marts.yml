@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: fct_orders
+    description: One row per order with revenue, payment, and lifecycle flags.
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: gross_revenue
+        description: Item price + freight (BRL). The marketplace's recognized sales value.
+  - name: fct_daily_revenue
+    description: Gap-filled daily revenue series used for forecasting.
+    columns:
+      - name: order_date
+        data_tests: [unique, not_null]
+  - name: dim_customers
+    columns:
+      - name: customer_unique_id
+        data_tests: [unique, not_null]
+  - name: dim_sellers
+    columns:
+      - name: seller_id
+        data_tests: [unique, not_null]
+      - name: lifecycle_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [active, churned, never_sold]
+  - name: fct_lead_funnel
+    description: One row per MQL with funnel-stage flags.
+    columns:
+      - name: mql_id
+        data_tests: [unique, not_null]
+  - name: fct_seller_monthly
+    data_tests:
+      - dbt_utils_like_unique_combination:
+          arguments:
+            columns: [seller_id, month]
